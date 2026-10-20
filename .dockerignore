@@ -1,0 +1,8 @@
+.git
+__pycache__
+*.pyc
+MANTENIMIENTO.zip
+MANTENIMIENTO_PROD.zip
+Prompt.docx
+cleanup_server.py
+Datos_backup_prod_pythonanywhere.json

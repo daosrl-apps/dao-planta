@@ -1,0 +1,143 @@
+{
+    "usuarios": [
+        {
+            "username": "demo",
+            "password": "demo",
+            "role": "admin",
+            "permissions": {
+                "mantenimiento": true,
+                "calidad": true,
+                "produccion": true,
+                "auditoria": true
+            }
+        },
+        {
+            "username": "admin",
+            "password": "admin",
+            "role": "admin",
+            "permissions": {
+                "mantenimiento": true,
+                "calidad": true,
+                "produccion": true,
+                "auditoria": true
+            }
+        }
+    ],
+    "maquinas": [
+        {
+            "id": 1,
+            "name": "Compresor Tornillo Kaeser",
+            "code": "COMP-01",
+            "brand": "Kaeser",
+            "model": "ASD 40",
+            "serial": "K-98421",
+            "area": "Servicios",
+            "frequency": 7,
+            "tasks": [
+                {
+                    "name": "Verificar nivel de aceite de compresor",
+                    "type": "boolean"
+                },
+                {
+                    "name": "Inspeccionar temperatura de descarga (°C)",
+                    "type": "numeric"
+                },
+                {
+                    "name": "Limpieza de filtro de aire exterior",
+                    "type": "boolean"
+                }
+            ],
+            "history": []
+        },
+        {
+            "id": 2,
+            "name": "Prensa Hidráulica 100T",
+            "code": "PREN-02",
+            "brand": "Brunner",
+            "model": "PH-100",
+            "serial": "B-44210",
+            "area": "Producción",
+            "frequency": 15,
+            "tasks": [
+                {
+                    "name": "Control de presión manométrica (bar)",
+                    "type": "numeric"
+                },
+                {
+                    "name": "Engrase de guías y columnas",
+                    "type": "boolean"
+                },
+                {
+                    "name": "Chequeo de fugas en mangueras hidráulicas",
+                    "type": "boolean"
+                }
+            ],
+            "history": []
+        }
+    ],
+    "historial": [
+        {
+            "id": 1,
+            "machineId": 1,
+            "machineName": "Compresor Tornillo Kaeser",
+            "type": "preventivo",
+            "taskName": "Verificar nivel de aceite de compresor",
+            "result": "OK",
+            "date": "2026-08-01",
+            "user": "demo",
+            "photo": ""
+        }
+    ],
+    "tareas_auditoria": [
+        {
+            "id": 1,
+            "name": "Limpieza Planta General"
+        },
+        {
+            "id": 2,
+            "name": "Comedor"
+        },
+        {
+            "id": 3,
+            "name": "Puesto lavado y Mesa de trabajo"
+        },
+        {
+            "id": 4,
+            "name": "Puesto colgado y descolgado y Mesa de trabajo"
+        },
+        {
+            "id": 5,
+            "name": "Puestos Pintura"
+        },
+        {
+            "id": 6,
+            "name": "Almacén Pintura"
+        },
+        {
+            "id": 7,
+            "name": "Pañol"
+        },
+        {
+            "id": 8,
+            "name": "Vestuarios y Baños"
+        },
+        {
+            "id": 9,
+            "name": "Tachos de Basura"
+        }
+    ],
+    "productos_calidad": [
+        {
+            "id": 1,
+            "name": "Eje Motor Principal 25mm",
+            "specification": "Medir longitud total (120mm +/- 0.5mm) y verificar ausencia de rebabas.",
+            "image": ""
+        },
+        {
+            "id": 2,
+            "name": "Soporte Chasis Lateral",
+            "specification": "Controlar espesor de chapa y cordón de soldadura continuo.",
+            "image": ""
+        }
+    ]
+}

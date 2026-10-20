@@ -1,0 +1,74 @@
+name: CI/CD Pipeline DAO PLANTA
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Python Tests (CI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Syntax & Import Check
+        run: |
+          python -c "import server; print('Server syntax OK')"
+
+  deploy:
+    name: Deploy to Contabo VM (CD)
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          port: 22
+          script: |
+            echo "Conectado al servidor. Iniciando despliegue de DAO PLANTA..."
+            
+            if [ ! -d "/root/app-dao-planta" ]; then
+              echo "Clonando repositorio por primera vez..."
+              git clone https://github.com/daosrl-apps/dao-planta.git /root/app-dao-planta
+            fi
+            
+            cd /root/app-dao-planta
+            
+            # Resguardar Datos.json de producción antes de actualizar
+            if [ -f "Datos.json" ]; then
+              cp Datos.json Datos.json.bak
+            fi
+            
+            # Traer últimos cambios de GitHub
+            git fetch --all
+            git reset --hard origin/master
+            
+            # Restaurar Datos.json de producción si existía
+            if [ -f "Datos.json.bak" ]; then
+              mv Datos.json.bak Datos.json
+            fi
+            
+            # Carpetas y permisos
+            mkdir -p uploads
+            chmod -R 777 uploads
+            
+            # Levantar contenedor en puerto 8087
+            docker compose up -d --build
+            echo "DAO PLANTA desplegado con éxito en el servidor."

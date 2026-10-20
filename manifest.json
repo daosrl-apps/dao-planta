@@ -1,0 +1,18 @@
+{
+  "name": "DAO PLANTA",
+  "short_name": "DAO PLANTA",
+  "description": "Sistema de gestión y control de mantenimiento de maquinaria para DAO SRL.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#F1C103",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

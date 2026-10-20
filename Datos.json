@@ -1,0 +1,83 @@
+{
+    "historial": [],
+    "maquinas": [],
+    "productos_calidad": [],
+    "tareas_auditoria": [
+        {
+            "id": 1,
+            "name": "Limpieza Planta General"
+        },
+        {
+            "id": 2,
+            "name": "Comedor"
+        },
+        {
+            "id": 3,
+            "name": "Puesto lavado y Mesa de trabajo"
+        },
+        {
+            "id": 4,
+            "name": "Puesto colgado y descolgado y Mesa de trabajo"
+        },
+        {
+            "id": 5,
+            "name": "Puestos Pintura"
+        },
+        {
+            "id": 6,
+            "name": "Almacén Pintura"
+        },
+        {
+            "id": 7,
+            "name": "Pañol"
+        },
+        {
+            "id": 8,
+            "name": "Vestuarios y Baños"
+        },
+        {
+            "id": 9,
+            "name": "Tachos de Basura"
+        }
+    ],
+    "usuarios": [
+        {
+            "password": "admin",
+            "role": "admin",
+            "username": "admin"
+        },
+        {
+            "password": "mesera1979",
+            "permissions": {
+                "auditoria": true,
+                "calidad": true,
+                "mantenimiento": true,
+                "produccion": true
+            },
+            "role": "admin",
+            "username": "luciano"
+        },
+        {
+            "password": "28021980",
+            "permissions": {
+                "auditoria": true,
+                "calidad": true,
+                "mantenimiento": true,
+                "produccion": true
+            },
+            "role": "supervisor",
+            "username": "rodrigo"
+        },
+        {
+            "password": "lautaro",
+            "permissions": {
+                "auditoria": true,
+                "calidad": false,
+                "mantenimiento": false,
+                "produccion": false
+            },
+            "role": "supervisor",
+            "username": "lautaro"
+        }
+    ]
+}

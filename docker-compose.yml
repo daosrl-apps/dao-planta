@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: dao-planta-app
+    restart: always
+    ports:
+      - "8087:8080"
+    volumes:
+      - ./Datos.json:/app/Datos.json
+      - ./Datos_demo.json:/app/Datos_demo.json
+      - ./uploads:/app/uploads
+    environment:
+      - PORT=8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/app-info"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
