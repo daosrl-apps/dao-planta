@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 
@@ -156,19 +156,43 @@
 
             <li class="sidebar-category-header module-produccion">Producción</li>
             <li class="module-produccion">
-              <a href="/operario" class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19 8H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 10H7v-2h6v2zm4-4H7v-2h10v2zm0-4H7V8h10v2z"/></svg>
-                <span>Línea / Operario</span>
+              <a href="javascript:void(0)" onclick="openProduccion('/operario')" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h4.5l2-6 4 12 2-6H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Trabajo en curso</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="/dashboard" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/ordenes')" class="nav-item">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                <span>Tablero de Órdenes</span>
+                <span>Órdenes de Trabajo</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="/tv" class="nav-item" target="_blank">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/gantt')" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h2v16H4V4zm4 4h8v3H8V8zm4 5h8v3h-8v-3z"/></svg>
+                <span>Gantt</span>
+              </a>
+            </li>
+            <li class="module-produccion">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/articulos')" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+                <span>Artículos</span>
+              </a>
+            </li>
+            <li class="module-produccion">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/turnos')" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                <span>Turnos</span>
+              </a>
+            </li>
+            <li class="module-produccion">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/metricas')" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                <span>Métricas</span>
+              </a>
+            </li>
+            <li class="module-produccion">
+              <a href="javascript:void(0)" onclick="openProduccion('/tv', true)" class="nav-item">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
                 <span>Pantalla TV Planta ↗</span>
               </a>
@@ -336,36 +360,60 @@
           </div>
 
           <div class="menu-grid">
-            <div class="menu-card" onclick="window.location.href='/operario'">
+            <div class="menu-card" onclick="openProduccion('/operario')">
               <div class="card-icon" style="background: rgba(41, 128, 185, 0.1); color: #2980b9;">
-                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M19 8H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 10H7v-2h6v2zm4-4H7v-2h10v2zm0-4H7V8h10v2z"/></svg>
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M3 13h4.5l2-6 4 12 2-6H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <h3>Línea / Tablet Operario</h3>
-              <p>Registro diario de turnos, inicio de OTs, piezas colgadas/pintadas y pausas de línea.</p>
+              <h3>Trabajo en curso</h3>
+              <p>Pausar, reanudar y finalizar la orden en línea de producción.</p>
             </div>
 
-            <div class="menu-card" onclick="window.location.href='/dashboard'">
+            <div class="menu-card" onclick="openProduccion('/dashboard/ordenes')">
               <div class="card-icon" style="background: rgba(52, 152, 219, 0.1); color: #3498db;">
-                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
               </div>
-              <h3>Tablero de Supervisión y OTs</h3>
-              <p>Carga de clientes, artículos, avance de lotes, métricas y órdenes de trabajo activas.</p>
+              <h3>Órdenes de trabajo</h3>
+              <p>Listado de OTs, carga de nuevas y su estado.</p>
             </div>
 
-            <div class="menu-card" onclick="window.open('/tv', '_blank')">
+            <div class="menu-card" onclick="openProduccion('/dashboard/gantt')">
+              <div class="card-icon" style="background: rgba(39, 174, 96, 0.1); color: #27ae60;">
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M4 4h2v16H4V4zm4 4h8v3H8V8zm4 5h8v3h-8v-3z"/></svg>
+              </div>
+              <h3>Gantt</h3>
+              <p>Diagrama de OTs en una regla de tiempo continua.</p>
+            </div>
+
+            <div class="menu-card" onclick="openProduccion('/tv', true)">
               <div class="card-icon" style="background: rgba(142, 68, 173, 0.1); color: #8e44ad;">
                 <svg class="icon-lg" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
               </div>
-              <h3>Monitoreo TV Planta</h3>
-              <p>Modo pantalla completa para visualización continua del estado de la nave industrial.</p>
+              <h3>Pantalla de TV</h3>
+              <p>Vista fullscreen para el televisor sobre la línea ↗</p>
             </div>
 
-            <div class="menu-card" onclick="window.location.href='/login'">
-              <div class="card-icon" style="background: rgba(243, 156, 18, 0.1); color: #f39c12;">
-                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            <div class="menu-card" onclick="openProduccion('/dashboard/articulos')">
+              <div class="card-icon" style="background: rgba(230, 126, 34, 0.1); color: #e67e22;">
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
               </div>
-              <h3>Acceso por PIN Operario</h3>
-              <p>Teclado numérico táctil de 6 dígitos para ingreso rápido de operarios en planta.</p>
+              <h3>Artículos</h3>
+              <p>Catálogo de piezas e importación desde CSV.</p>
+            </div>
+
+            <div class="menu-card" onclick="openProduccion('/dashboard/turnos')">
+              <div class="card-icon" style="background: rgba(241, 193, 3, 0.1); color: #f1c103;">
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <h3>Turnos</h3>
+              <p>Configurar horarios de los turnos de la planta.</p>
+            </div>
+
+            <div class="menu-card" onclick="openProduccion('/dashboard/metricas')">
+              <div class="card-icon" style="background: rgba(231, 76, 60, 0.1); color: #e74c3c;">
+                <svg class="icon-lg" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+              </div>
+              <h3>Métricas</h3>
+              <p>Dashboard y comparativa contra el período anterior.</p>
             </div>
           </div>
         </section>
@@ -864,6 +912,7 @@
                     <tr>
                       <th>Usuario</th>
                       <th>Rol</th>
+                      <th>Permisos de Acceso</th>
                       <th>Acción</th>
                     </tr>
                   </thead>
@@ -1197,6 +1246,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>

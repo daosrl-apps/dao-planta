@@ -413,11 +413,43 @@ function loginUser(user) {
     });
   });
 
+  // Sincronizar sesión de Producción de fondo (SSO transparente)
+  if (user && user.username) {
+    fetch('/api/auth/sso', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user.username })
+    }).catch(err => console.warn('SSO Producción:', err));
+  }
+
   showScreen('screen-menu-principal');
   updateNavBadge();
 }
 
+// Navegación directa y autenticada a las herramientas de Producción (sin doble login)
+async function openProduccion(targetPath, newTab = false) {
+  if (state.currentUser && state.currentUser.username) {
+    try {
+      await fetch('/api/auth/sso', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: state.currentUser.username })
+      });
+    } catch (err) {
+      console.warn('Error sincronizando sesión en Producción:', err);
+    }
+  }
+
+  if (newTab) {
+    window.open(targetPath, '_blank');
+  } else {
+    window.location.href = targetPath;
+  }
+}
+window.openProduccion = openProduccion;
+
 function logoutUser() {
+  fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
   state.currentUser = null;
   sessionStorage.removeItem('dao_user');
   document.getElementById('app-shell').classList.add('hidden');
@@ -1374,9 +1406,17 @@ function loadUsuariosScreen() {
       const row = document.createElement('tr');
       const isSelf = u.username === state.currentUser.username;
       
+      const perms = u.permissions || { mantenimiento: true, calidad: true, produccion: true, auditoria: true };
+      const permBadges = [];
+      if (perms.mantenimiento !== false) permBadges.push('<span class="badge" style="background:rgba(241,193,3,0.15);color:#f1c103;font-size:11px;">Mantenimiento</span>');
+      if (perms.calidad !== false) permBadges.push('<span class="badge" style="background:rgba(39,174,96,0.15);color:#27ae60;font-size:11px;">Calidad</span>');
+      if (perms.produccion !== false) permBadges.push('<span class="badge" style="background:rgba(41,128,185,0.15);color:#2980b9;font-size:11px;">Producción</span>');
+      if (perms.auditoria !== false) permBadges.push('<span class="badge" style="background:rgba(155,89,182,0.15);color:#9b59b2;font-size:11px;">Auditoría</span>');
+
       row.innerHTML = `
         <td data-label="Usuario"><strong>${u.username}</strong></td>
         <td data-label="Rol"><span class="badge" style="background-color:${u.role === 'admin' ? 'rgba(241,193,3,0.1)' : 'rgba(255,255,255,0.05)'}; color:${u.role === 'admin' ? 'var(--primary-color)' : 'var(--text-muted)'}">${u.role === 'admin' ? 'Administrador' : 'Supervisor'}</span></td>
+        <td data-label="Permisos de Acceso" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center;">${permBadges.length > 0 ? permBadges.join(' ') : '<span style="color:var(--text-muted);font-size:12px;">Sin accesos</span>'}</td>
         <td data-label="Acción" style="display: flex; gap: 8px;">
           <button type="button" class="btn btn-secondary btn-sm btn-edit-user" data-username="${u.username}">
             Editar
