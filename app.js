@@ -324,6 +324,16 @@ function showScreen(screenId) {
     targetEl.classList.add('active');
   }
 
+  // Toggle embedded-active class on main content container
+  const mainContent = document.querySelector('.app-content');
+  if (mainContent) {
+    if (screenId === 'screen-produccion-view') {
+      mainContent.classList.add('embedded-active');
+    } else {
+      mainContent.classList.remove('embedded-active');
+    }
+  }
+
   // Handle active class on nav links
   document.querySelectorAll('.nav-item').forEach(el => {
     const elScreen = el.getAttribute('data-screen');
@@ -331,6 +341,13 @@ function showScreen(screenId) {
       if (screenId === 'screen-historial-general') {
         const elCategory = el.getAttribute('data-history-category');
         if (elCategory === state.activeHistoryCategory) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      } else if (screenId === 'screen-produccion-view') {
+        const elProdPath = el.getAttribute('data-prod-path');
+        if (elProdPath === state.currentProduccionPath) {
           el.classList.add('active');
         } else {
           el.classList.remove('active');
@@ -426,8 +443,33 @@ function loginUser(user) {
   updateNavBadge();
 }
 
-// Navegación directa y autenticada a las herramientas de Producción (sin doble login)
+const PRODUCCION_TITLES = {
+  '/operario': 'Trabajo en curso (Línea)',
+  '/dashboard/ordenes': 'Órdenes de Trabajo',
+  '/dashboard/gantt': 'Diagrama Gantt',
+  '/dashboard/articulos': 'Catálogo de Artículos',
+  '/dashboard/turnos': 'Turnos de Planta',
+  '/dashboard/metricas': 'Dashboard de Métricas',
+  '/tv': 'Pantalla de TV'
+};
+
+let currentProduccionPath = '/dashboard/ordenes';
+
+// Navegación directa y embebida a las herramientas de Producción dentro de DAO PLANTA
 async function openProduccion(targetPath, newTab = false) {
+  if (targetPath === '/tv' || newTab) {
+    if (state.currentUser && state.currentUser.username) {
+      fetch('/api/auth/sso', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: state.currentUser.username })
+      }).catch(() => {});
+    }
+    window.open(targetPath, '_blank');
+    return;
+  }
+
+  // Sincronizar SSO en segundo plano
   if (state.currentUser && state.currentUser.username) {
     try {
       await fetch('/api/auth/sso', {
@@ -440,13 +482,55 @@ async function openProduccion(targetPath, newTab = false) {
     }
   }
 
-  if (newTab) {
-    window.open(targetPath, '_blank');
-  } else {
-    window.location.href = targetPath;
+  state.currentProduccionPath = targetPath;
+  currentProduccionPath = targetPath;
+
+  const titleEl = document.getElementById('produccion-tool-title');
+  if (titleEl) {
+    titleEl.textContent = PRODUCCION_TITLES[targetPath] || 'Herramienta';
   }
+
+  const spinner = document.getElementById('produccion-loading-spinner');
+  const iframe = document.getElementById('produccion-iframe');
+
+  if (spinner) spinner.style.display = 'flex';
+
+  if (iframe) {
+    const urlWithEmbed = targetPath + (targetPath.includes('?') ? '&' : '?') + 'embed=true';
+    iframe.onload = () => {
+      if (spinner) spinner.style.display = 'none';
+    };
+    if (iframe.contentWindow && iframe.contentWindow.location && iframe.contentWindow.location.pathname === targetPath) {
+      if (spinner) spinner.style.display = 'none';
+    } else {
+      iframe.src = urlWithEmbed;
+    }
+  }
+
+  showScreen('screen-produccion-view');
 }
 window.openProduccion = openProduccion;
+
+function reloadProduccionFrame() {
+  const iframe = document.getElementById('produccion-iframe');
+  const spinner = document.getElementById('produccion-loading-spinner');
+  if (iframe) {
+    if (spinner) spinner.style.display = 'flex';
+    try {
+      iframe.contentWindow.location.reload();
+    } catch (e) {
+      iframe.src = iframe.src;
+    }
+  }
+}
+window.reloadProduccionFrame = reloadProduccionFrame;
+
+function openCurrentToolExternal() {
+  if (currentProduccionPath) {
+    window.open(currentProduccionPath, '_blank');
+  }
+}
+window.openCurrentToolExternal = openCurrentToolExternal;
 
 function logoutUser() {
   fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});

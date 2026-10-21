@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
@@ -156,37 +156,37 @@
 
             <li class="sidebar-category-header module-produccion">Producción</li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/operario')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/operario')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/operario">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h4.5l2-6 4 12 2-6H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>Trabajo en curso</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/ordenes')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/ordenes')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/ordenes">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                 <span>Órdenes de Trabajo</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/gantt')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/gantt')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/gantt">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h2v16H4V4zm4 4h8v3H8V8zm4 5h8v3h-8v-3z"/></svg>
                 <span>Gantt</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/articulos')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/articulos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/articulos">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
                 <span>Artículos</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/turnos')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/turnos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/turnos">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                 <span>Turnos</span>
               </a>
             </li>
             <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/metricas')" class="nav-item">
+              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/metricas')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/metricas">
                 <svg class="icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
                 <span>Métricas</span>
               </a>
@@ -415,6 +415,40 @@
               <h3>Métricas</h3>
               <p>Dashboard y comparativa contra el período anterior.</p>
             </div>
+          </div>
+        </section>
+
+        <!-- SCREEN: PRODUCCIÓN EMBEBIDA DIRECTA -->
+        <section id="screen-produccion-view" class="content-screen">
+          <div class="produccion-toolbar">
+            <div class="produccion-toolbar-left">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="showScreen('screen-menu-produccion')">
+                ← Menú Producción
+              </button>
+              <div class="produccion-toolbar-title">
+                <span style="color: var(--primary-color);">Producción ›</span>
+                <span id="produccion-tool-title">Herramienta</span>
+              </div>
+            </div>
+            <div class="produccion-toolbar-actions">
+              <button type="button" class="produccion-toolbar-btn" onclick="reloadProduccionFrame()" title="Recargar vista">
+                <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                <span>Recargar</span>
+              </button>
+              <button type="button" class="produccion-toolbar-btn" onclick="openCurrentToolExternal()" title="Abrir en ventana completa">
+                <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                <span>Nueva pestaña</span>
+              </button>
+            </div>
+          </div>
+          <div id="produccion-frame-container" style="flex: 1; width: 100%; position: relative; background: #f8fafc;">
+            <div id="produccion-loading-spinner" style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(12, 20, 39, 0.95); z-index: 10;">
+              <div style="text-align: center;">
+                <div class="spinner" style="margin: 0 auto 12px; width: 36px; height: 36px;"></div>
+                <p style="color: #94a3b8; font-size: 13px; font-weight: 500;">Cargando herramienta...</p>
+              </div>
+            </div>
+            <iframe id="produccion-iframe" src="about:blank" style="width: 100%; height: 100%; border: none; display: block;" allow="clipboard-write"></iframe>
           </div>
         </section>
 
@@ -1246,6 +1280,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=12"></script>
+  <script src="app.js?v=13"></script>
 </body>
 </html>
