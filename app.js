@@ -315,6 +315,19 @@ function checkExistingSession() {
   }
 }
 
+function toggleSidebarCategory(categoryName, forceState) {
+  const catEl = document.querySelector(`.sidebar-category[data-category="${categoryName}"]`);
+  if (!catEl) return;
+  const isOpen = catEl.classList.contains('open');
+  const shouldOpen = forceState !== undefined ? forceState : !isOpen;
+  if (shouldOpen) {
+    catEl.classList.add('open');
+  } else {
+    catEl.classList.remove('open');
+  }
+}
+window.toggleSidebarCategory = toggleSidebarCategory;
+
 function showScreen(screenId) {
   state.activeScreen = screenId;
   document.querySelectorAll('.screen, .content-screen').forEach(el => el.classList.remove('active'));
@@ -359,6 +372,21 @@ function showScreen(screenId) {
       el.classList.remove('active');
     }
   });
+
+  // Abrir automáticamente el submenú que contiene la pantalla activa si corresponde
+  const activeSubItem = document.querySelector('.sidebar-submenu .nav-item.active');
+  if (activeSubItem) {
+    const parentCat = activeSubItem.closest('.sidebar-category');
+    if (parentCat) parentCat.classList.add('open');
+  } else if (screenId === 'screen-menu-mantenimiento') {
+    toggleSidebarCategory('mantenimiento', true);
+  } else if (screenId === 'screen-menu-calidad') {
+    toggleSidebarCategory('calidad', true);
+  } else if (screenId === 'screen-menu-produccion') {
+    toggleSidebarCategory('produccion', true);
+  } else if (screenId === 'screen-menu-auditoria') {
+    toggleSidebarCategory('auditoria', true);
+  }
 
   // Toggle drawer off on screen change (mobile)
   document.getElementById('app-sidebar').classList.remove('drawer-open');
@@ -507,6 +535,7 @@ async function openProduccion(targetPath, newTab = false) {
     }
   }
 
+  toggleSidebarCategory('produccion', true);
   showScreen('screen-produccion-view');
 }
 window.openProduccion = openProduccion;
@@ -623,10 +652,14 @@ function updateNavBadge() {
 
       const badge = document.getElementById('nav-pending-badge');
       const menuBadge = document.getElementById('menu-pending-badge');
+      const catBadge = document.getElementById('category-mantenimiento-badge');
       if (pendingCount > 0) {
         if (badge) {
           badge.textContent = pendingCount;
           badge.classList.remove('hidden');
+        }
+        if (catBadge) {
+          catBadge.classList.remove('hidden');
         }
         if (menuBadge) {
           menuBadge.textContent = `${pendingCount} pendientes`;
@@ -634,6 +667,7 @@ function updateNavBadge() {
         }
       } else {
         if (badge) badge.classList.add('hidden');
+        if (catBadge) catBadge.classList.add('hidden');
         if (menuBadge) menuBadge.classList.add('hidden');
       }
     });

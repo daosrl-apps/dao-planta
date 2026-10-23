@@ -113,117 +113,168 @@
                 <span>Menú Principal</span>
               </a>
             </li>
-                  <li class="sidebar-category-header module-mantenimiento">Mantenimiento</li>
-            <li class="module-mantenimiento">
-              <a href="#" class="nav-item" data-screen="screen-esta-semana">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
-                <span>Esta Semana</span>
-                <span id="nav-pending-badge" class="badge badge-accent hidden">0</span>
-              </a>
-            </li>
-            <li class="module-mantenimiento">
-              <a href="#" class="nav-item" data-screen="screen-realizar">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                <span>Realizar Trabajo</span>
-              </a>
-            </li>
-            <li class="module-mantenimiento">
-              <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="mantenimiento">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-                <span>Historial Mantenimiento</span>
-              </a>
-            </li>
-            <li class="admin-only module-mantenimiento">
-              <a href="#" class="nav-item" data-screen="screen-alta-maquina">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                <span>Alta de Máquina</span>
-              </a>
-            </li>
-
-            <li class="sidebar-category-header module-calidad">Calidad</li>
-            <li class="module-calidad">
-              <a href="#" class="nav-item" data-screen="screen-registro-control-calidad">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                <span>Registro de Control</span>
-              </a>
-            </li>
-            <li class="module-calidad">
-              <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="calidad">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-                <span>Historial Calidad</span>
-              </a>
+            <!-- Categoría: Mantenimiento -->
+            <li class="sidebar-category module-mantenimiento" data-category="mantenimiento">
+              <button type="button" class="sidebar-category-header" onclick="toggleSidebarCategory('mantenimiento')">
+                <span class="category-title">
+                  <span>Mantenimiento</span>
+                  <span id="category-mantenimiento-badge" class="category-badge hidden"></span>
+                </span>
+                <svg class="category-chevron icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+              </button>
+              <ul class="sidebar-submenu" id="submenu-mantenimiento">
+                <li class="module-mantenimiento">
+                  <a href="#" class="nav-item" data-screen="screen-esta-semana">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                    <span>Esta Semana</span>
+                    <span id="nav-pending-badge" class="badge badge-accent hidden">0</span>
+                  </a>
+                </li>
+                <li class="module-mantenimiento">
+                  <a href="#" class="nav-item" data-screen="screen-realizar">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <span>Realizar Trabajo</span>
+                  </a>
+                </li>
+                <li class="module-mantenimiento">
+                  <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="mantenimiento">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    <span>Historial Mantenimiento</span>
+                  </a>
+                </li>
+                <li class="admin-only module-mantenimiento">
+                  <a href="#" class="nav-item" data-screen="screen-alta-maquina">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    <span>Alta de Máquina</span>
+                  </a>
+                </li>
+              </ul>
             </li>
 
-            <li class="sidebar-category-header module-produccion">Producción</li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/operario')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/operario">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h4.5l2-6 4 12 2-6H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>Trabajo en curso</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/ordenes')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/ordenes">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                <span>Órdenes de Trabajo</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/gantt')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/gantt">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h2v16H4V4zm4 4h8v3H8V8zm4 5h8v3h-8v-3z"/></svg>
-                <span>Gantt</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/articulos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/articulos">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
-                <span>Artículos</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/turnos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/turnos">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                <span>Turnos</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/dashboard/metricas')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/metricas">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                <span>Métricas</span>
-              </a>
-            </li>
-            <li class="module-produccion">
-              <a href="javascript:void(0)" onclick="openProduccion('/tv', true)" class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
-                <span>Pantalla TV Planta ↗</span>
-              </a>
+            <!-- Categoría: Calidad -->
+            <li class="sidebar-category module-calidad" data-category="calidad">
+              <button type="button" class="sidebar-category-header" onclick="toggleSidebarCategory('calidad')">
+                <span class="category-title">
+                  <span>Calidad</span>
+                </span>
+                <svg class="category-chevron icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+              </button>
+              <ul class="sidebar-submenu" id="submenu-calidad">
+                <li class="module-calidad">
+                  <a href="#" class="nav-item" data-screen="screen-registro-control-calidad">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    <span>Registro de Control</span>
+                  </a>
+                </li>
+                <li class="module-calidad">
+                  <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="calidad">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    <span>Historial Calidad</span>
+                  </a>
+                </li>
+              </ul>
             </li>
 
-            <li class="sidebar-category-header module-auditoria">Auditoría</li>
-            <li class="module-auditoria">
-              <a href="#" class="nav-item" data-screen="screen-orden-limpieza">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span>Orden y Limpieza</span>
-              </a>
-            </li>
-            <li class="module-auditoria">
-              <a href="#" class="nav-item" data-screen="screen-gestion-auditoria">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                <span>Gestionar Tareas</span>
-              </a>
-            </li>
-            <li class="module-auditoria">
-              <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="auditoria">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
-                <span>Historial Auditoría</span>
-              </a>
+            <!-- Categoría: Producción -->
+            <li class="sidebar-category module-produccion" data-category="produccion">
+              <button type="button" class="sidebar-category-header" onclick="toggleSidebarCategory('produccion')">
+                <span class="category-title">
+                  <span>Producción</span>
+                </span>
+                <svg class="category-chevron icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+              </button>
+              <ul class="sidebar-submenu" id="submenu-produccion">
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/operario')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/operario">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h4.5l2-6 4 12 2-6H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Trabajo en curso</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/dashboard/ordenes')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/ordenes">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    <span>Órdenes de Trabajo</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/dashboard/gantt')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/gantt">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h2v16H4V4zm4 4h8v3H8V8zm4 5h8v3h-8v-3z"/></svg>
+                    <span>Gantt</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/dashboard/articulos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/articulos">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+                    <span>Artículos</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/dashboard/turnos')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/turnos">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <span>Turnos</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/dashboard/metricas')" class="nav-item" data-screen="screen-produccion-view" data-prod-path="/dashboard/metricas">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                    <span>Métricas</span>
+                  </a>
+                </li>
+                <li class="module-produccion">
+                  <a href="javascript:void(0)" onclick="openProduccion('/tv', true)" class="nav-item">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+                    <span>Pantalla TV Planta ↗</span>
+                  </a>
+                </li>
+              </ul>
             </li>
 
-            <li class="sidebar-category-header admin-only">Administración</li>
-            <li class="admin-only">
-              <a href="#" class="nav-item" data-screen="screen-usuarios">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                <span>Gestión Usuarios</span>
-              </a>
+            <!-- Categoría: Auditoría -->
+            <li class="sidebar-category module-auditoria" data-category="auditoria">
+              <button type="button" class="sidebar-category-header" onclick="toggleSidebarCategory('auditoria')">
+                <span class="category-title">
+                  <span>Auditoría</span>
+                </span>
+                <svg class="category-chevron icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+              </button>
+              <ul class="sidebar-submenu" id="submenu-auditoria">
+                <li class="module-auditoria">
+                  <a href="#" class="nav-item" data-screen="screen-orden-limpieza">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <span>Orden y Limpieza</span>
+                  </a>
+                </li>
+                <li class="module-auditoria">
+                  <a href="#" class="nav-item" data-screen="screen-gestion-auditoria">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    <span>Gestionar Tareas</span>
+                  </a>
+                </li>
+                <li class="module-auditoria">
+                  <a href="#" class="nav-item" data-screen="screen-historial-general" data-history-category="auditoria">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    <span>Historial Auditoría</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Categoría: Administración -->
+            <li class="sidebar-category admin-only" data-category="administracion">
+              <button type="button" class="sidebar-category-header" onclick="toggleSidebarCategory('administracion')">
+                <span class="category-title">
+                  <span>Administración</span>
+                </span>
+                <svg class="category-chevron icon" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+              </button>
+              <ul class="sidebar-submenu" id="submenu-administracion">
+                <li class="admin-only">
+                  <a href="#" class="nav-item" data-screen="screen-usuarios">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span>Gestión Usuarios</span>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>
